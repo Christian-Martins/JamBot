@@ -1,0 +1,11 @@
+{
+    "jambot":{
+        "token": "XXXX",
+        "prefix": "j!",
+        "defaultLanguage": "english" 
+    },
+    "embed":{
+        "color": "#c0392b",
+        "footer": "JamBot | Enertix"
+    }
+}
