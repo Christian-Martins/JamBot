@@ -8,11 +8,12 @@ const fs = require('fs'),
 	{ clear } = require('console'), // For make "clear();"
 	commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js')); // For the command handler
 
+client.color = config.embed.color;
+client.footer = config.embed.footer;
 client.commands = new Discord.Collection();
 clear(); // Clear the console
 
-console.log(logger.redBright.bgBlue.underline("JamBot"))
-console.log(logger.blueBright.bold('-------------------------'));
+console.log(logger.redBright.bgBlue.underline("JamBot"+"\n")+logger.blueBright.bold('-------------------------'));
 
 let table = new ascii("JamBot")
 	.setHeading("","Command", "Status");
@@ -43,10 +44,7 @@ let statsTable = new ascii("JamBot- Stats")
 	.setHeading("Servers", "Users")
 	.addRow(client.guilds.cache.size, client.users.cache.size);
 
-console.log(logger.yellow(statsTable))
-console.log(logger.blueBright.bold('-------------------------'));
-console.log(logger.green.underline("Logs"))
-console.log(logger.blueBright.bold('-------------------------'));
+console.log(logger.yellow(statsTable) + "\n" + logger.blueBright.bold('-------------------------')+logger.green.underline("\nLogs")+logger.blueBright.bold('\n-------------------------'));
 client.on('message', message => {
     let prefix = config.jambot.prefix;
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -78,7 +76,7 @@ client.on('message', message => {
 	}
 });
 
-
+// Goodbye Function for proper shutdown
 process.on('SIGINT', function() {
 	console.log(logger.green("GoodBye! We are shutting down JamBot."))
 	setTimeout(() => { clear(); process.exit(1); }, 1000);
