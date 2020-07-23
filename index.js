@@ -79,5 +79,11 @@ client.on('message', message => {
 });
 
 
+process.on('SIGINT', function() {
+	console.log(logger.green("GoodBye! We are shutting down JamBot."))
+	setTimeout(() => { clear(); process.exit(1); }, 1000);
+	
+});
+
 // Connecting to the discord's API
 client.login(config.jambot.token);
