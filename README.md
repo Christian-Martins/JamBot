@@ -22,7 +22,11 @@ Then in the folder of your extracted jambot, make this command with your command
 `npm install`
 [![NPM Install](https://i.gyazo.com/d281aa7ab11fcbf4f97c2ceb1f65c8df.gif)](https://gyazo.com/d281aa7ab11fcbf4f97c2ceb1f65c8df)
 
-Almost done! You need to edit config.new.json with your own parameter and rename it config.json!
+__Almost done! You need to edit config.new.json with your own parameter and rename it config.json!__
+
 Then run your jambot with `node index.js`
+
+[![node index.js](https://i.gyazo.com/ba8edf81ad5dda85cca4dc4c8624010e.gif)](https://gyazo.com/ba8edf81ad5dda85cca4dc4c8624010e)
+
 ✨ But I recommand [PM2](https://pm2.keymetrics.io/docs/usage/quick-start/)!
 
