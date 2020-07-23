@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const config = require('./config.json');
+const config = require('./config/config.json');
 const logger = require('chalk');
 
 const client = new Discord.Client();
