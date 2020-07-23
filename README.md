@@ -1,3 +1,5 @@
+# 🛑🛑DON'T USE THIS BRANCH🛑🛑
+__This is a dev branch 😜__
 # JamBot
  🍯 Cool Discord bot for gamejam's teams!
 Make your team optimized on one platform!
