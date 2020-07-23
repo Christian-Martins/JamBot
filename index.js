@@ -6,11 +6,16 @@ const fs = require('fs'),
  	client = new Discord.Client(), // Define client of Discord
 	ascii = require("ascii-table"), // Make stylish table in the console
 	{ clear } = require('console'), // For make "clear();"
-	commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js')); // For the command handler
+	commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js')), // For the command handler
+	low = require('lowdb'),
+	FileSync = require('lowdb/adapters/FileSync'),
+	adapter = new FileSync('config/emojis.json'),
+	db = low(adapter);
 
 client.color = config.embed.color;
 client.footer = config.embed.footer;
 client.commands = new Discord.Collection();
+
 clear(); // Clear the console
 
 console.log(logger.redBright.bgBlue.underline("JamBot"+"\n")+logger.blueBright.bold('-------------------------'));
@@ -45,6 +50,11 @@ let statsTable = new ascii("JamBot- Stats")
 	.addRow(client.guilds.cache.size, client.users.cache.size);
 
 console.log(logger.yellow(statsTable) + "\n" + logger.blueBright.bold('-------------------------')+logger.green.underline("\nLogs")+logger.blueBright.bold('\n-------------------------'));
+
+// Setup the db
+db.defaults({ servers: [] })
+			.write()
+
 client.on('message', message => {
     let prefix = config.jambot.prefix;
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -74,7 +84,58 @@ client.on('message', message => {
 		console.error(error);
 		message.reply('there was an error trying to execute that command!');
 	}
+	
+	const server =  message.guild.id;
+	// Emoji of Atlanta! https://github.com/androz2091/atlantabot
+	const get_server_emoji = db.get("servers").find(server).value();
+	if(!get_server_emoji){
+		/*db.get('servers')
+			.push(server, [])
+			.write()*/
+	}
+	console.log(get_server_emoji);
+	if(!message.guild.emojis.cache.find(emoji => emoji.name == 'dnd')){
+		message.guild.emojis.create('https://cdn.discordapp.com/emojis/616613445252546570.png', 'dnd')
+			.then(emoji => console.log(logger.blueBright(`Created new emoji with name ${emoji.name}`)))
+			.catch(console.error);
+	}
+
+	if(!message.guild.emojis.cache.find(emoji => emoji.name == 'idle')){
+		message.guild.emojis.create('https://cdn.discordapp.com/emojis/616613445290164224.png', 'idle')
+			.then(emoji => console.log(logger.blueBright(`Created new emoji with name ${emoji.name}`)))
+			.catch(console.error);
+	} 
+
+	if(!message.guild.emojis.cache.find(emoji => emoji.name == 'online')){
+		message.guild.emojis.create('https://cdn.discordapp.com/emojis/616613445424513028.png', 'online')
+			.then(emoji => console.log(logger.blueBright(`Created new emoji with name ${emoji.name}`)))
+			.catch(console.error);
+	} 
+
+	if(!message.guild.emojis.cache.find(emoji => emoji.name == 'invisible')){
+		message.guild.emojis.create('https://cdn.discordapp.com/emojis/616613445487558696.png', 'invisible')
+			.then(emoji => console.log(logger.blueBright(`Created new emoji with name ${emoji.name}`)))
+			.catch(console.error);
+	} 
+
+	if(!message.guild.emojis.cache.find(emoji => emoji.name == 'folder')){
+		message.guild.emojis.create('https://cdn.discordapp.com/emojis/601019084468912129.png?v=1', 'folder')
+			.then(emoji => console.log(logger.blueBright(`Created new emoji with name ${emoji.name}`)))
+			.catch(console.error);
+	} 
+
+	if(!message.guild.emojis.cache.find(emoji => emoji.name == 'warning')){
+		message.guild.emojis.create('https://cdn.discordapp.com/emojis/598179558927106058.png', 'warning')
+			.then(emoji => console.log(logger.blueBright(`Created new emoji with name ${emoji.name}`)))
+			.catch(console.error);
+	}
+
+	
 });
+
+	
+
+	
 
 // Goodbye Function for proper shutdown
 process.on('SIGINT', function() {
