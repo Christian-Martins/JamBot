@@ -7,5 +7,9 @@
     "embed":{
         "color": "#c0392b",
         "footer": "JamBot | Enertix"
+    },
+    "logs":{
+        "console-log-type": 1,
+        "channel": "X"
     }
 }
