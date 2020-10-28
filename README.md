@@ -1,11 +1,5 @@
 # JamBot
- 🍯 Cool Discord bot for gamejam's teams!
-Make your team optimized on one platform!
-
-# For what my team needs JamBot?
-
-JamBot is a powerfull bot with multiple options!
-It offer for example :
+ 🍯 Base for powerful bots.
 
 # 🗃 How to make my own JamBot?
 
