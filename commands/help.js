@@ -16,7 +16,7 @@ module.exports = {
                 message.reply('I\'ve sent you a DM with all my commands!');
             })
             .catch(error => {
-                console.error(logger.red(`[❌] Could not send the result of "j!help" to ${message.author.tag} in DM. \n`, error));
+                console.error(logger.red(`[❌] Could not send the result of ${jambot.prefix}help to ${message.author.tag} in DM. \n`, error));
                 //message.reply(client.warningemoji);
             });
 	},
